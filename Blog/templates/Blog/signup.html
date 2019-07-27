@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	
+	<br>
+	<h4 style="color: Blue;">SIGNUP</h4>	
+	<br>
+	<form action="{% url 'signup' %}" method="POST">
+		{% csrf_token %}
+		<input type="text" name="username" placeholder="User Name">
+		<br><br>
+		<input type="text" name="name" placeholder="Name">
+		<br><br>
+		<input type="password" name="password1" placeholder="Password">
+		<br><br>
+		<input type="password" name="password2" placeholder="Confirm Password">
+		<br><br>
+		<button class="btn btn-danger">Sign Up</button>
+	</form>
+	<br>
+	<span style="color: red">{{ error }}</span>
+	<span style="color: green">{{ errorr }}</span>
+
+{% endblock %}

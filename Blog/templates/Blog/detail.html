@@ -1,0 +1,37 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+
+	<br>
+	
+		
+	<h2 class="text-center pt-3" style="font-family: cambria; text-align: justify; text-align-last: center;">{{ blog.title }}</h2>
+		<p class="text-center" style=" color: red; font-weight: bold; font-family: calibri; font-size: 18px">{{ blog.pub_date }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=" color: Blue; font-weight: bold; font-family: calibri; font-size: 18px">{{ ds }}</span></p>
+		<hr>
+		<br>
+		<center><img class="img-fluid" src="{{ blog.image.url }}" height="500" width="500">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-danger"><a href="{% url 'upvote' blog.id %}" style="font-size: 18px; text-decoration: none; color: white"> Upvotes &nbsp; {{ blog.upvote }}</a></button></center>
+		<br>
+		<br>
+		<p class="card-text" style="text-align: justify; text-align-last: left;">{{ blog.body }}</p>
+		<br>
+
+	<br>
+	<h4>Comments</h4>
+	<hr>
+
+	{% for data in cmnt %}
+		<div>
+			<h6>{{ data.name }}</h6>
+			{{ data.comment }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="{% url 'delete' data.id %}" style="text-decoration: none; font-weight: bold; font-family: calibri; font-size: 17px;">Delete</a>
+		</div>
+		<br>
+	{% endfor %}
+
+	<form action="{% url 'comment' %}" method="POST">
+		{% csrf_token %}
+		<textarea rows="3" cols="50" placeholder="Comment" name="comment"></textarea>
+		<br>
+		<button type="submit" class="btn btn-primary">Comment</button>
+	</form>
+
+{% endblock %}

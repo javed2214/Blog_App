@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+
+<style>
+    .bd-placeholder-img{
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <link href="album.css" rel="stylesheet">
+  </head>
+  <body>
+  <main role="main">
+
+	<div class="container">
+		
+		{% for blog in blog %}
+		
+		<div class="container">
+  			<div class="card-columns d-flex justify-content-center">
+			<div class="card" style="width: 35rem;">
+			  <div class="card-body">
+			  <center> <a href="{% url 'detail' blog.id %}" style="text-decoration: none; font-family: cambria;text-align: justify ; text-align-last: left; font-size: 20px">  <span class="card-title">{{ blog.title }}</span></a></center><br>
+			    <h6 class="card-subtitle mb-2 text-center" style=" color: red">{{ blog.pub_date_pretty }}</h6>
+			    <br>
+				<center><img class="img-fluid" src="{{ blog.image.url }}" /></center>
+				<br>
+			    <p class="card-text centered">{{ blog.summary }}</p>
+			    <p class="text-center"><a href="{% url 'detail' blog.id %}" class="card-link center">Read Full Article</a></p>
+			  </div>
+			</div>
+		<br>
+	</div>
+</div>
+</div>
+{% endfor %}
+
+{% endblock %}

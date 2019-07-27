@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<br>						
+	<h3 style="font-family: calibri; font-weight: bold">&nbsp;Hello, {{ user }}</h3>
+	<br>
+	{% for d in data %}
+		{{ d.title }}
+	{% endfor %}
+
+	{% if x == 0 %}
+	<br><br><br><br><br><br><br>
+		<center><h3 style="color: brown; font-family: cambria; font-weight: bold">NO ARTICLES YET!!!</h3></center>
+	{% endif %}
+
+<br>
+
+<style>
+    .bd-placeholder-img{
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <link href="album.css" rel="stylesheet">
+  </head>
+  <body>
+  <main role="main">
+
+	<div class="container">
+		
+		{% for blog in blog %}
+		
+		<div class="container">
+  			<div class="card-columns d-flex justify-content-center">
+			<div class="card" style="width: 35rem;">
+			  <div class="card-body">
+			  <center> <a href="{% url 'detail' blog.id %}" style="text-decoration: none; font-family: cambria;text-align: justify ; text-align-last: left; font-size: 20px">  <span class="card-title">{{ blog.title }}</span></a></center><br>
+			    <h6 class="card-subtitle mb-2 text-center" style=" color: brown">{{ blog.pub_date_pretty }}</h6>
+			    <br>
+				<center><img class="img-fluid" src="{{ blog.image.url }}" /></center>
+				<br>
+			    <p class="card-text centered">{{ blog.summary }}</p>
+			    <p class="text-center"><a href="{% url 'detail' blog.id %}" class="card-link center">Read Full Article</a></p>
+			  </div>
+			</div>
+			<div>
+				<br><br><br><br><br><br><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'updatearticle' blog.id %}" style="color: green; font-weight: bold; font-family: calibri; font-size: 18px; text-decoration: none;">UPDATE</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style="color: red; font-weight: bold; font-family: calibri; font-size: 18px; text-decoration: none;">DELETE</a>
+			</div>
+		<br>
+	</div>
+</div>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	
+	<br>
+
+	<form action="{% url 'postarticle' %}" method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		<textarea rows="3" cols="40" name="title" placeholder="Title"></textarea><br><br>
+		<input type="file" name="image"><br><br>
+		<textarea rows="8" cols="100" name="body" placeholder="Content"></textarea><br><br>
+		<button type="submit">Submit</button>
+	</form>
+
+{% endblock %}

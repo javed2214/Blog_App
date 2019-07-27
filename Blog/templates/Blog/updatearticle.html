@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	
+	<br>
+	<table>
+		<tr>
+			<td>
+				<form action="{% url 'updated' blog.id %}" method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					<textarea rows="3" cols="40" name="title" placeholder="Title">{{ blog.title }}</textarea><br><br>
+					<input type="file" name="image">Current File = {{ blog.image }} <br><br>
+					<textarea rows="16" cols="100" name="body" placeholder="Content">{{ blog.body }}</textarea><br><br>
+					<button type="submit">Submit</button>
+				</form>
+			</td>
+			<td>
+				<br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{{ blog.image.url }}" height="300" width="400">
+			</td>
+		</tr>
+	</table>
+
+{% endblock %}
